@@ -13,6 +13,8 @@
 		FBD47B11203144E600282008 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBD47B10203144E600282008 /* Assets.xcassets */; };
 		FBD47B14203144E600282008 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBD47B12203144E600282008 /* LaunchScreen.storyboard */; };
 		FBD47B17203144E600282008 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD47B16203144E600282008 /* main.m */; };
+		FBD47B2420316D3300282008 /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD47B2320316D3300282008 /* TableViewCell.m */; };
+		FBD47B28203171C700282008 /* URLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD47B27203171C700282008 /* URLConnection.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,10 @@
 		FBD47B13203144E600282008 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FBD47B15203144E600282008 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FBD47B16203144E600282008 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		FBD47B2320316D3300282008 /* TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
+		FBD47B2520316D3F00282008 /* TableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewCell.h; sourceTree = "<group>"; };
+		FBD47B26203171C700282008 /* URLConnection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = URLConnection.h; path = Project/URLConnection.h; sourceTree = "<group>"; };
+		FBD47B27203171C700282008 /* URLConnection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = URLConnection.m; path = Project/URLConnection.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +48,8 @@
 		FBD47AFB203144E600282008 = {
 			isa = PBXGroup;
 			children = (
+				FBD47B26203171C700282008 /* URLConnection.h */,
+				FBD47B27203171C700282008 /* URLConnection.m */,
 				FBD47B06203144E600282008 /* Project */,
 				FBD47B05203144E600282008 /* Products */,
 			);
@@ -67,6 +75,8 @@
 				FBD47B12203144E600282008 /* LaunchScreen.storyboard */,
 				FBD47B15203144E600282008 /* Info.plist */,
 				FBD47B16203144E600282008 /* main.m */,
+				FBD47B2520316D3F00282008 /* TableViewCell.h */,
+				FBD47B2320316D3300282008 /* TableViewCell.m */,
 			);
 			path = Project;
 			sourceTree = "<group>";
@@ -142,7 +152,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FBD47B28203171C700282008 /* URLConnection.m in Sources */,
 				FBD47B0C203144E600282008 /* ViewController.m in Sources */,
+				FBD47B2420316D3300282008 /* TableViewCell.m in Sources */,
 				FBD47B17203144E600282008 /* main.m in Sources */,
 				FBD47B09203144E600282008 /* AppDelegate.m in Sources */,
 			);
