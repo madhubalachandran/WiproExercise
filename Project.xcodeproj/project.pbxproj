@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FB42F295203BFABE00198D49 /* TableView.m in Sources */ = {isa = PBXBuildFile; fileRef = FB42F294203BFABE00198D49 /* TableView.m */; };
 		FB42F298203C298A00198D49 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB42F296203C298A00198D49 /* Main.storyboard */; };
 		FB4DDFFB203ECA31005C6E25 /* ProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FB4DDFFA203ECA31005C6E25 /* ProjectTests.m */; };
 		FBD47B09203144E600282008 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD47B08203144E600282008 /* AppDelegate.m */; };
@@ -31,8 +30,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		FB42F293203BFABE00198D49 /* TableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableView.h; sourceTree = "<group>"; };
-		FB42F294203BFABE00198D49 /* TableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableView.m; sourceTree = "<group>"; };
 		FB42F297203C298A00198D49 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FB4DDFF8203ECA31005C6E25 /* ProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB4DDFFA203ECA31005C6E25 /* ProjectTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProjectTests.m; sourceTree = "<group>"; };
@@ -82,8 +79,6 @@
 		FBD47AFB203144E600282008 = {
 			isa = PBXGroup;
 			children = (
-				FB42F293203BFABE00198D49 /* TableView.h */,
-				FB42F294203BFABE00198D49 /* TableView.m */,
 				FBD47B06203144E600282008 /* Project */,
 				FB4DDFF9203ECA31005C6E25 /* ProjectTests */,
 				FBD47B05203144E600282008 /* Products */,
@@ -233,7 +228,6 @@
 			files = (
 				FBD47B28203171C700282008 /* URLConnection.m in Sources */,
 				FBD47B0C203144E600282008 /* HomeViewController.m in Sources */,
-				FB42F295203BFABE00198D49 /* TableView.m in Sources */,
 				FBD47B17203144E600282008 /* main.m in Sources */,
 				FBD47B09203144E600282008 /* AppDelegate.m in Sources */,
 			);
