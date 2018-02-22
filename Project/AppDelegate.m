@@ -1,7 +1,7 @@
 
 
 #import "AppDelegate.h"
-
+#import "HomeViewController.h"
 @interface AppDelegate ()
 
 @end
@@ -10,6 +10,12 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    self.viewController = [[HomeViewController alloc] init];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:self.viewController];
+    navController.navigationBarHidden = YES;
+    self.window.rootViewController = navController;
+    [self.window makeKeyAndVisible];
     // Override point for customization after application launch.
     return YES;
 }
@@ -33,6 +39,9 @@
 
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
+   
+//  HomeViewController * home = [[HomeViewController alloc]init];
+//    [self.window.rootViewController presentViewController:home animated:YES completion:nil];
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
 

@@ -1,7 +1,6 @@
-
+ 
 
 #import "HomeViewController.h"
-#import "TableViewCell.h"
 #import "URLConnection.h"
 @interface HomeViewController ()
 
@@ -13,19 +12,34 @@ NSArray *responseArray;
     responseArray= [NSArray array];
 }
 - (void)viewDidLoad {
-    [self getAPIResponse];
-  
+    
+    self.tableView = [self makeTableView];
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"tableCell"];
+    [self.view addSubview:self.tableView];
+    
+    
     refreshControl = [[UIRefreshControl alloc] init];
-   refreshControl.backgroundColor = [UIColor purpleColor];
+    refreshControl.backgroundColor = [UIColor purpleColor];
     refreshControl.tintColor = [UIColor whiteColor];
     [refreshControl addTarget:self
-                            action:@selector(getAPIResponse)
-                  forControlEvents:UIControlEventValueChanged];
-     [self.tableView addSubview:refreshControl];
+                       action:@selector(getAPIResponse)
+             forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:refreshControl];
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
 }
-
+-(void)viewWillAppear:(BOOL)animated{
+       [self getAPIResponse];
+    [super viewWillAppear:animated];
+}
+-(UITableView *)makeTableView
+{
+    
+     tableView =[[UITableView alloc]initWithFrame:CGRectMake(0 ,40 ,420 ,950) style:UITableViewStyleGrouped ];
+    tableView.delegate = self;
+    tableView.dataSource = self;
+    return tableView;
+}
 -(void)getAPIResponse{
     [[URLConnection alloc] initRequestWithURL:@"https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/facts.json" method:GET onResponseReceived:^(NSString *respose) {
         NSError *err = nil;
@@ -33,7 +47,7 @@ NSArray *responseArray;
         NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:jsonData options: NSJSONReadingMutableContainers error: &err];
         [self.navigationController setTitle: [responseDictionary valueForKey:@"title"]];
         responseArray = [responseDictionary valueForKey:@"rows"];
-        [_tableView reloadData];
+        [tableView reloadData];
         if(refreshControl.isRefreshing){
         [refreshControl endRefreshing];
         }
@@ -44,26 +58,30 @@ NSArray *responseArray;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    TableViewCell *tableViewCell = (TableViewCell *) [tableView dequeueReusableCellWithIdentifier:@"tableCell" forIndexPath:indexPath];
+
+
+    UITableViewCell *tableViewCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"tableCell"];
+     tableViewCell.translatesAutoresizingMaskIntoConstraints = NO;
+    tableViewCell.detailTextLabel.numberOfLines = 0;
     NSDictionary *rowDictionary = [responseArray objectAtIndex:indexPath.row];
-    tableViewCell.titleLabel.text=[rowDictionary valueForKey:@"title"]!=[NSNull null]?[rowDictionary valueForKey:@"title"]:@"No Title";
-   tableViewCell.descLabel.text=[rowDictionary valueForKey:@"description"]!=[NSNull null]?[rowDictionary valueForKey:@"description"]:@"No Description";
+    tableViewCell.textLabel.text=[rowDictionary valueForKey:@"title"]!=[NSNull null]?[rowDictionary valueForKey:@"title"]:@"No Title";
+   tableViewCell.detailTextLabel.text = [rowDictionary valueForKey:@"description"]!=[NSNull null]?[rowDictionary valueForKey:@"description"]:@"No Description";
     if([rowDictionary valueForKey:@"imageHref"] != [NSNull null]){
-        [tableViewCell.img setImage:[UIImage imageNamed:@"placeholder_loading.png"]];
+        [tableViewCell.imageView setImage:[UIImage imageNamed:@"placeholder_loading.png"]];
         [[[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:[rowDictionary valueForKey:@"imageHref"]] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
             if (data) {
                 UIImage *image = [UIImage imageWithData:data];
                 if (image) {
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        TableViewCell *cell = (id)[tableView cellForRowAtIndexPath:indexPath];
-                        if (cell)
-                            [cell.img setImage:image];
+                         [tableViewCell.imageView setImage:[UIImage imageNamed:@"placeholder.png"]];
+                       UITableViewCell *cell = (id)[tableView cellForRowAtIndexPath:indexPath];                        if (cell)
+                            [cell.imageView setImage:image];
                     });
                 }
             }
         }] resume] ;
     }else{
-        [tableViewCell.img setImage:[UIImage imageNamed:@"placeholder.png"]];
+        [tableViewCell.imageView setImage:[UIImage imageNamed:@"placeholder.png"]];
     }
    
     tableViewCell.backgroundView.backgroundColor=[UIColor colorWithRed:231.0/255 green:42.0/255 blue:42.0/255 alpha:1.0];
@@ -82,5 +100,11 @@ NSArray *responseArray;
     
     return responseArray.count;
 }
-
+-(void)completionWithHandler:(void(^)(NSString *responseString)) response;
+{
+    [[URLConnection alloc] initRequestWithURL:@"https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/facts.json" method:GET onResponseReceived:^(NSString *respose) {
+        response(respose);
+    }];
+    
+}
 @end

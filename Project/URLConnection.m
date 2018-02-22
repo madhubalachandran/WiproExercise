@@ -21,7 +21,7 @@
   [responseData appendData:data];
 }
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection{
-        NSString *responseString = [[NSString alloc] initWithData:responseData encoding:NSASCIIStringEncoding];
-        _globalResponseBlock(responseString);
+    responseString = [[NSString alloc] initWithData:responseData encoding:NSASCIIStringEncoding];
+    _globalResponseBlock(responseString);
 }
 @end
