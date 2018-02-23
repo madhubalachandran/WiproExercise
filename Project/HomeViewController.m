@@ -35,11 +35,19 @@ NSArray *responseArray;
 -(UITableView *)makeTableView
 {
     
-     tableView =[[UITableView alloc]initWithFrame:CGRectMake(0 ,40 ,420 ,950) style:UITableViewStyleGrouped ];
+
+     tableView =[[UITableView alloc]initWithFrame:CGRectMake(0 ,0 ,self.view.frame.size.width ,self.view.frame.size.height) style:UITableViewStyleGrouped ];
     tableView.delegate = self;
     tableView.dataSource = self;
     return tableView;
 }
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    [self.tableView setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    
+}
+
 -(void)getAPIResponse{
     [[URLConnection alloc] initRequestWithURL:@"https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/facts.json" method:GET onResponseReceived:^(NSString *respose) {
         NSError *err = nil;
@@ -107,4 +115,6 @@ NSArray *responseArray;
     }];
     
 }
+
+
 @end
